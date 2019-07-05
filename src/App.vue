@@ -1,35 +1,24 @@
 <template>
   <div id="app">
-    <transition :name="trans" mode="">
-      <router-view />
-    </transition>
+    <div class="view-wrapper">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import Home from "./views/Home.vue";
-
 export default {
   name: "app",
-  data(){
-    return{
-      trans: '',
-    }
+  data() {
+    return {};
   },
-  watch: {
-    $route(to, from){
-      if(to.meta.index > from.meta.index){
-        this.trans = 'move2right';
-      }else{
-        this.trans = 'move2left';
-      }
-    }
-  },
-  methods: {},
+  components: {},
+  watch: {},
+  methods: {}
 };
 </script>
 
-<style scoped>
-@import "./assets/css/index.css";
-
+<style lang="stylus" scoped>
+#app
+  min-width: 1024px
 </style>

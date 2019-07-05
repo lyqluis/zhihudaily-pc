@@ -14,17 +14,13 @@
 <script>
 import { Indicator } from "mint-ui";
 import api from "../assets/js/api";
-import BottomMenu from "@/components/ArticleBottomMenu";
-// import articlecss from this.articleData.css[0];
 
 export default {
   components: {
-    BottomMenu
   },
   data() {
     return {
       articleData: {},
-      cssStyle: {}
     };
   },
   created() {

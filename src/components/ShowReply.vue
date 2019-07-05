@@ -37,7 +37,8 @@ export default {
 
 .reply
   margin: pr(5) 0
-  line-height pr(20)
+  line-height pr(15)
+  font-size pr(10)
 
   .errormsg
     margin: 0 !important
@@ -59,4 +60,5 @@ export default {
     width: pr(40)
     text-align: center
     background: rgb(213, 227, 244)
+    cursor pointer
 </style>

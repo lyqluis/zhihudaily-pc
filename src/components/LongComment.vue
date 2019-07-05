@@ -1,8 +1,14 @@
 <template>
   <div class="long-comment">
     <div class="longcomment">
-      <div class="longcommenthead">{{longComments.length}}条长评</div>
-      <ul>
+      <div class="longcommenthead">
+        {{longComments.length}}条长评
+        <i
+          :class="showLongcomment ? 'icon-shouqi':'icon-zhankai'"
+          @click="showLongComments"
+        />
+      </div>
+      <ul v-show="showLongcomment">
         <li v-for="item in longComments" :key="item.id">
           <img :src="replaceUrl(item.avatar)">
           <span class="author">{{item.author}}</span>
@@ -27,23 +33,20 @@ export default {
   components: {
     ShowReply
   },
+  props: {
+    longComments: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      longComments: []
-      //   isliked: false,
+      showLongcomment: false
     };
   },
   created() {
-    //获取长评data
-    this.$axios(
-      api.story +
-        // this.$store.state.nowId
-        this.$route.query.id +
-        "/long-comments"
-    ).then(res => {
-      // console.log(res);
-      this.longComments = res.data.comments;
-    });
+    // // 获取长评data
+    // this.getLongComments();
   },
   // updated() {
   //   // this.$store.commit("getCommentNum", this.longComments.length);
@@ -60,17 +63,17 @@ export default {
       }
     }
   },
-  watch: {
-    longComments: {
-      handler() {
-        this.$emit("getCommentnum", this.longComments.length);
-      },
-      deep: true
-    }
-  },
-
+  watch: {},
   computed: {},
   methods: {
+    getLongComments() {
+      this.$axios(api.story + this.$store.state.nowId + "/long-comments").then(
+        res => {
+          // console.log(res);
+          this.longComments = res.data.comments;
+        }
+      );
+    },
     goback() {
       this.$router.go(-1);
     },
@@ -93,10 +96,10 @@ export default {
         ":" +
         time.getMinutes()
       );
+    },
+    showLongComments() {
+      this.showLongcomment = !this.showLongcomment;
     }
-    // like() {
-    //   this.isliked = !this.isliked;
-    // },
   }
 };
 </script>
@@ -105,47 +108,57 @@ export default {
 @import '../assets/stylus/mixin.styl'
 
 .long-comment
-  font-size pr(16)
   .longcommenthead
-    height: pr(32)
+    height: pr(30)
     border-bottom: pr(1) solid rgb(215, 215, 215)
-    line-height: pr(32)
+    line-height: pr(30)
     padding-left: pr(15)
+    padding-right: pr(15)
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  &>i
+    width: pr(16)
+    height: pr(32)
+    line-height: pr(32)
 
   ul
     padding: 0
 
   li
     border-bottom: pr(1) solid rgb(215, 215, 215)
-    padding: pr(15) pr(20) pr(10) pr(65)
+    padding: pr(15) pr(20) pr(10) pr(50)
 
     & img
       position: absolute
       left: pr(15)
-      width: pr(40)
-      height: pr(40)
+      width: pr(30)
+      height: pr(30)
       border-radius: 50%
+
     & > i
       float: right
+
     & article
       margin-top: pr(5)
-      line-height pr(20)
-
+      line-height: pr(15)
 
   .author
     font-weight: 900
-    font-size: pr(17)
+    // font-size: pr(17)
 
-  i.icon-good_fill 
+  i.icon-good_fill
     color: rgb(180, 180, 180)
+
     & span
       float: right
       position: relative
       left: pr(5)
       color: rgb(180, 180, 180)
-      font-size: pr(10)
+      // font-size: pr(10)
 
   .time
     color: rgb(165, 165, 165)
-    line-height pr(14)
+    line-height: pr(10)
 </style>

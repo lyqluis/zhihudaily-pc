@@ -5,6 +5,7 @@
       <!-- <slot></slot> -->
       <div v-for="item in pics" :key="item.id" class="swiper-slide" @click="openArticle(item.id)">
         <img :src="replaceUrl(item.image)">
+        <div class="shadow"/>
         <span class="title">{{item.title}}</span>
       </div>
     </div>
@@ -85,34 +86,8 @@ export default {
     openArticle(id) {
       //取得现在的id以及下一个id
       this.$store.commit("getId", id);
-      //打开对应文章页面
-      this.$router.push({
-        name: "article",
-        params: { id }
-      });
+      this.$emit('openArticle', id);
     }
-    // mounted() {
-    //   let swiper = new Swiper(".swiper-container", {
-    //     // direction: "vertical", // 垂直切换选项
-    //     loop: true, // 循环模式选项
-    //     autoplay: true, //自动切换
-    //     observer: true, //添加后解决vue中不自动轮播的问题
-    //     observeParents: true, //同上
-    //     // 如果需要分页器
-    //     pagination: {
-    //       el: ".swiper-pagination"
-    //     },
-    //     // // 如果需要前进后退按钮
-    //     // navigation: {
-    //     //   nextEl: ".swiper-button-next",
-    //     //   prevEl: ".swiper-button-prev"
-    //     // },
-    //     // 如果需要滚动条
-    //     scrollbar: {
-    //       el: ".swiper-scrollbar"
-    //     }
-    //   });
-    // },
   }
 };
 </script>
@@ -121,28 +96,35 @@ export default {
 @import '../assets/stylus/mixin.styl'
 
 .swiper-container
-  height: calc((100vh / 3))
+  height: pr(120)
   overflow: hidden
 
-  img
-    width: 100%
-    height: 100vw
-    position: relative
-    top: pr(-60)
-    /* margin-top: -15%; */
+  .swiper-wrapper
+    img
+      width: 100%
+      position: relative
+      top: pr(-60)
+      /* margin-top: -15%; */
 
-  .title
-    display: block
-    position: absolute
-    bottom: pr(20)
-    color: rgb(255, 255, 255)
-    font-size: pr(22)
-    font-weight: bolder
-    padding: pr(10)
-    text-shadow: 0 pr(2) pr(2) rgb(2, 2, 2)
-    line-height: pr(28)
+    .title
+      display: block
+      position: absolute
+      bottom: pr(10)
+      color: rgb(255, 255, 255)
+      font-size: pr(11)
+      font-weight: 900
+      padding: 0 pr(15)
+      text-shadow: 0 pr(2) pr(2) rgb(2, 2, 2)
+      line-height: pr(14)
+
+    .shadow
+      height: 100%
+      width: 100%
+      position: absolute
+      bottom 0
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 20%, rgba(0, 0, 0, 0))
 
   &>>>.swiper-pagination
     position: absolute
-    bottom: pr(0)
+    bottom: pr(2)
 </style>
