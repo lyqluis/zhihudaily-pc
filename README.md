@@ -4,12 +4,13 @@
 按照个人浏览习惯，我做了pc端和mobile两个版本;
 
 ## 预览
-[pc端]() [项目地址]()
+[pc端](https://xiannvjiadexiaogouzi.github.io/zhihudaily-pc/#/) [项目地址](https://github.com/xiannvjiadexiaogouzi/zhihudaily-pc)
+
 ![](https://raw.githubusercontent.com/xiannvjiadexiaogouzi/zhihu/master/zhihu-pc.gif)
 
 [移动端](https://xiannvjiadexiaogouzi.github.io/zhihu/#/) [项目地址](https://github.com/xiannvjiadexiaogouzi/zhihu)
 
-![](https://raw.githubusercontent.com/xiannvjiadexiaogouzi/zhihu/master/zhihu-mobile.gif)
+![](https://raw.githubusercontent.com/xiannvjiadexiaogouzi/zhihu/master/zhihu-mobile.gif) 
 ![](https://raw.githubusercontent.com/xiannvjiadexiaogouzi/zhihu/master/zhihu-mobile2.gif)
 
 ## 技术栈
